@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav style="display: flex;">
+    <div class="logo">
+        <h4>Mansur Musaev</h4>
+    </div>
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Создать пост</a></li>
+        <li><a href="#">Projects</a></li>
+    </ul>
+    <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+
+    
+</nav>
+
+<style>
+    @media (min-width: 640px) {
+        .grid {
+            grid-template-columns: 2fr 4fr;
+            grid-template-areas:
+                "header header"
+                "article article"
+                "footer footer"
+        }
+    }
+</style>
+
+
+<div class="grid">
+    <header>
+        <div id="main">
+            <span style="font-size:15px;cursor:pointer" onclick="openNav()">&#9776; Социальные сети</span>
+          </div>
+    </header>
+    <article>
+        <h1>Заголовок</h1>
+        <p>Далеко-далеко за словесными горами в стране гласных, и согласных живут рыбные тексты.</p>
+    </article>
+    <footer><a href="{% url 'home' %}">Главная</a></footer>
+</div>
+
+
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+        transition: background-color .5s;
+      }
+      
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
+      
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+      }
+      
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+      
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+      
+      #main {
+        transition: margin-left .5s;
+        padding: 16px;
+      }
+      
+      @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+      }
+      </style>
+      </head>
+      <body>
+      
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="https://github.com/Mansur-09595/">Github
+            <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.instagram.com/?hl=ru">Instagram
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+        </a>
+      </div>
+      
+      
+{% endblock %}
+

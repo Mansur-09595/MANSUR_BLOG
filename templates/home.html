@@ -78,11 +78,22 @@
           </div>
     </header>
     <article>
+      <div class="jumbotron">
+        <h1 class="display-4">Newspaper app</h1>
+        <p class="lead">A Newspaper website built with Django.</p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="{% url 'article_list' %}" role="button">View All Articles</a>
+        </p>
+      </div>
       {% for post in object_list %}<br>
         <a href="#">{{post.title}}</a><br>
         <p>{{post.body}}</p><br> 
       {% endfor %}
-      <a href="#">+Создать пост</a> |
+      {% if user.is_authenticated %}
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a href="{% url 'article_new' %}">+ New</a></li>
+        </ul>
+      {% endif %}
     </article>
     <aside>
         <div class="info_name">
@@ -90,6 +101,6 @@
             <h3 class="desc">Web-Developer</h3>
         </div>
     </aside>
-    <footer><a href="#">About</a></footer>
+    <footer><a href="{% url 'about' %}">About</a></footer>
 </div>
 {% endblock %}

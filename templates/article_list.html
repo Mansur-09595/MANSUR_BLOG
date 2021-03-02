@@ -1,30 +1,72 @@
 {% extends 'base.html' %}
 
-{% block title %}Articles{% endblock title %}
-
 {% block content %}
-  {% for article in object_list %}
-    <div class="card">
-      <div class="card-header">
-        <span class="font-weight-bold">{{ article.title }}</span> &middot;
-        <span class="text-muted">by {{ article.author }} | {{ article.date }}</span>
-      </div>
-      <div class="card-body">
-        <p>{{ article.body }}</p>
-        {% if article.author == user %}
-          <a href="{% url 'article_edit' article.pk %}">Edit</a> |
-          <a href="{% url 'article_delete' article.pk %}">Delete</a>
-        {% endif %}
-      </div>
-      <div class="card-footer">
-        {% for comment in article.comments.all %}
-          <p>
-            <span class="font-weight-bold">{{ comment.author }} &middot;</span>
-            {{ comment }}
-          </p>
-        {% endfor %}
-      </div>
+
+<nav style="display: flex;">
+    <div class="logo">
+        <h4>Mansur Musaev</h4>
     </div>
-    <br />
-  {% endfor %}
-{% endblock content %}
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Создать пост</a></li>
+        <li><a href="#">Projects</a></li>
+    </ul>
+    <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+
+    
+</nav>
+
+<style>
+    nav {
+      position: absolute;
+    }
+
+    @media (min-width: 640px) {
+        .grid {
+            grid-template-columns: 2fr 4fr;
+            grid-template-areas:
+                "article article"
+                "footer footer"
+        }
+    }
+</style>
+<div class="grid">
+    <article style="color: black;">
+      {% for article in object_list %}
+      <div class="card">
+        <div class="card-header">
+          <span class="font-weight-bold">{{ article.title }}</span> &middot;
+          <span class="text-muted">by {{ article.author }} | {{ article.date }}</span>
+        </div>
+        <div class="card-body">
+          <p>{{ article.body }}</p>
+          {% if article.author == user %}
+            <a href="{% url 'article_edit' article.pk %}">Edit</a> |
+            <a href="{% url 'article_delete' article.pk %}">Delete</a>
+          {% endif %}
+        </div>
+        <div class="card-footer">
+          <h2>Comments</h2>
+          <a href="{% url 'add_comments' article.pk %}">Add Comment</a>
+          <br/><br/>
+          {% for comment in article.comments.all %}
+            <p>
+              <span class="font-weight-bold">{{ comment.author }} &middot; {{ comment.date }} &middot;</span>
+              {{ comment.comment }}
+              <br>
+              {{ comment.body }}
+            </p>
+          {% endfor %}
+        </div>
+      </div>
+      <br />
+    {% endfor %}
+    </article>
+    <footer><a href="{% url 'home' %}">Главная</a></footer>
+</div>      
+{% endblock %}

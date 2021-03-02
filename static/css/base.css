@@ -1,6 +1,6 @@
 .grid {
 	display: grid;
-	grid-gap: 20px;
+	grid-gap: 4px;
 	margin-top: 62px;
 	grid-template-areas:
 		"aside"
@@ -27,8 +27,8 @@ footer {
 
 @media (min-width: 640px) {
 	.grid {
-		margin-top: 75px;
-		margin-bottom: 10px;
+		margin-top: 62px;
+		margin-bottom: 5px;
 		grid-template-columns: 2fr 4fr;
 		grid-template-areas:
 			"header header"
@@ -38,7 +38,7 @@ footer {
 }
 
 .grid > * {
-	background-color: #28314E;
+	background-color: #676767;
 	border: 1px solid #212941;
 	border-radius: 5px;
 	padding: 8px 15px;
@@ -48,7 +48,7 @@ footer {
 }
 
 .grid > *:nth-child(odd) {
-	background-color: #475477;
+	background-color: #676767;
 }
 
 

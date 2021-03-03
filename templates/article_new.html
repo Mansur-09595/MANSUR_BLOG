@@ -3,9 +3,56 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h1>New article</h1>
+<style>
+    @media screen and (max-width: 600px) {
+      aside {
+        display: none;
+      }
+    }
+
+    @media (min-width: 640px) {
+        .grid {
+            grid-template-columns: 2fr 4fr;
+            grid-template-areas:
+                "header header"
+                "article article"
+                "footer  footer"
+        }
+    }
+</style>
+<div class="grid">
+    <header>
+      <nav style="display: flex;">
+        <div class="logo">
+            <h4>Mansur Musaev</h4>
+        </div>
+        <ul class="nav-links">
+      
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href="#">About</a></li>
+            {% if user.is_authenticated %}
+              <li><a style='color:teal;' href="#">{{ user.username }}</a></li>
+              <li><a href="{% url 'logout' %}">Выход</a></li>
+            {% else %}
+              <li><a href="{% url 'login' %}">Вход</a></li>
+              <li><a href="{% url 'signup' %}">Регистрация</a></li>
+            {% endif %}
+            <li><a href="#">Projects</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+      </nav>    
+    </header>
+    <article style="color: black;">
+      <h1>New article</h1>
     <form action="" method="post">{% csrf_token %}
       {{ form|crispy }}
       <button class="btn btn-success ml-2" type="submit">Save</button>
     </form>
-{% endblock content %}
+    </article>
+    <footer><a href="{% url 'home' %}">Главная</a></footer>
+</div>      
+{% endblock %}

@@ -6,13 +6,13 @@
 
 nav {
 	position: fixed;
-	top: 0;
 	width: 100%;
+	top: 0;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	min-height: 8vh;
-	background-color: #5D4954;
+	background-color: #343a40!important;
 	font-family: "Poppins", sans-serif;
 }
 
@@ -26,7 +26,7 @@ nav {
 .nav-links {
 	display: flex;
 	justify-content: space-around;
-	width: 30%;
+	width: 40%;
 }
 
 .nav-links li {

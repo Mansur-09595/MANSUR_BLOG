@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-    <h1>Delete</h1>
+<style>
+    @media (min-width: 640px) {
+        .grid {
+            grid-template-columns: 2fr 4fr;
+            grid-template-areas:
+                "article article"
+                "footer footer"
+        }
+    }
+</style>
+<div class="grid">
+    <article style="color: black;">
+      <h1>Delete</h1>
     <form action="" method="post">{% csrf_token %}
       <p>Are you sure you want to delete "{{ article.title }}"?</p>
       <button class="btn btn-danger ml-2" type="submit">Confirm</button>
     </form>
-{% endblock content %}
+    </article>
+    <footer><a href="{% url 'home' %}">Главная</a></footer>
+</div>      
+{% endblock %}

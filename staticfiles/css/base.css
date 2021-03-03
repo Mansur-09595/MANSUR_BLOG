@@ -1,0 +1,112 @@
+.grid {
+	display: grid;
+	grid-gap: 24px;
+	margin-top: 50px;
+	grid-template-areas:
+		"aside"
+		"article"
+		"footer"
+		"header";
+}
+
+header {
+	grid-area: header;
+	position: fixed;
+}
+
+aside {
+	grid-area: aside;
+}
+
+article {
+	grid-area: article;
+	text-align: center;
+}
+
+footer {
+	grid-area: footer;
+}
+
+@media (min-width: 640px) {
+	.grid {
+		grid-template-columns: 2fr 4fr;
+		grid-template-areas:
+			"header header"
+			"article article"
+			"aside  aside"
+			"footer footer"
+	}
+}
+
+.grid > * {
+	margin: auto;
+	width: 80%;
+	background-color: #d8d7d7;
+	border: 1px solid #c1c1c1;
+	border-radius: 5px;
+	color: #000000;
+	font-size: 18px;
+	font-family: roboto;
+}
+
+.grid > *:nth-child(odd) {
+	background-color: #d8d7d7;
+}
+
+.lead {
+	max-width: 418px;
+    margin: 0 auto 40px;
+}
+
+.info_text {
+	overflow: hidden;
+	background-color: #333;
+	position: fixed; /* Set the info_text to fixed position */
+	top: 0; /* Position the info_text at the top of the page */
+	width: 100%; /* Full width */
+  }
+  
+  /* Links inside the info_text */
+  .info_text{
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+  }
+  
+  /* Change background on mouse-over */
+  .info_text a:hover {
+	background: #ddd;
+	color: black;
+  }
+
+
+  /* Карусели */
+  .carousel-inner {
+	  max-width: 750px;
+	  margin: auto;
+  }
+
+  img {
+	height: auto; 
+    width: auto; 
+    min-width: 300px; 
+    max-height: 300px;
+	float: left;
+  }
+
+.carousel, .slide, .my-5{
+	display: grid;
+	grid-gap: 20px;
+}
+
+.carousel, .slide, .my-5, .d-block .img-fluid {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 10px
+}
+
+a, ol, li {
+	color: #000000;
+}

@@ -9,6 +9,10 @@ class HomePageView(TemplateView):
     template_name = 'home.html'
 
 
+class About(TemplateView):
+    template_name = 'about.html'
+
+
 # Create your views here.
 class SignUp(CreateView):
     form_class = CustomUserCreationForm

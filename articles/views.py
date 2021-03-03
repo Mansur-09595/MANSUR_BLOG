@@ -75,7 +75,3 @@ class ArticleCommentView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.article_id = self.kwargs['pk']
         return super().form_valid(form)
-
-
-class About(TemplateView):
-    template_name = 'about.html'

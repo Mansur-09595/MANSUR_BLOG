@@ -131,7 +131,7 @@ USE_TZ = True
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_URL = '/musaevblog.herokuapp.com/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 

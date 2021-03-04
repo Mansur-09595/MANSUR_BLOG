@@ -20,6 +20,10 @@
               <li><a href="{% url 'signup' %}">Регистрация</a></li>
             {% endif %}
             <li><a href="https://github.com/Mansur-09595?tab=repositories">Projects</a></li>
+            {% if user.is_superuser %}
+              <li><a href="https://accounts.google.com/DisplayUnlockCaptcha">Google</a></li>
+            {% endif %}
+    
         </ul>
         <div class="burger">
             <div class="line1"></div>

@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
-
+import django_heroku
+import dj_database_url
+from decouple import config
 from config import *
 
 from pathlib import Path
@@ -23,8 +25,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = secret_key
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = secret_key
+#SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -150,3 +152,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER', email_username)
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS', email_password)
+
+django_heroku.settings(locals())

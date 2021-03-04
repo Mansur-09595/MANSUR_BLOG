@@ -29,7 +29,7 @@ SECRET_KEY = secret_key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['musaevbloging.herokuapp.com']
+ALLOWED_HOSTS = ['musaevblog.herokuapp.com']
 
 
 # Application definition

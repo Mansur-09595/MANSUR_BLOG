@@ -33,7 +33,7 @@ urlpatterns = [
 #     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_URL)
 #     urlpatterns += static(settings.STATICFILES_DIRS, document_root=settings.STATICFILES_DIRS)
 
-if settings.DEBUG:
+if not settings.DEBUG:
     urlpatterns += patterns(
         'django.views.static',
         (r'^static/(?P<path>.*)','serve',{'document_root': settings.STATIC_ROOT}), )

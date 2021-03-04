@@ -12,7 +12,6 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-    + static(settings.STATIC_URL, document_root=settings.STATIC_URL)
 """
 from django.contrib import admin
 from django.urls import path, include
@@ -26,4 +25,4 @@ urlpatterns = [
     path('articles/', include('articles.urls')),
     path('admin/', admin.site.urls),
     path('users/', include('django.contrib.auth.urls')),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

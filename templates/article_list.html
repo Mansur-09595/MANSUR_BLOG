@@ -60,7 +60,26 @@
       <br />
     {% endfor %}
     </article>
-    <footer><a href="{% url 'home' %}">Главная</a></footer>
+    <footer class="bg-dark text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <footer style="text-align: center;">
+            <a href="{% url 'home' %}">Главная</a>
+          </footer>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © Мансур Мусаев:
+        <a class="text-white" href="https://hh.ru/resume/900dc250ff03504e380039ed1f56327659494c">1997 года рождения</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
 </div>
 <style>
   @media screen and (max-width: 600px) {

@@ -69,7 +69,7 @@ nav {
 		right: 0px;
 		height: 92vh;
 		top: 8vh;
-		background-color: #5D4954;
+		background-color: #343a40!important;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

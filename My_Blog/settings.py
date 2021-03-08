@@ -27,10 +27,10 @@ SECRET_KEY = secret_key
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['musaevblog.herokuapp.com']
-#ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['musaevblog.herokuapp.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 

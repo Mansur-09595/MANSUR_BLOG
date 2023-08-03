@@ -1,11 +1,12 @@
+from rest_framework import generics
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 from .forms import CommentForm
 
 from .models import Article, Comment
-
+from .serializers import ArticleSerializer, CommentSerializer
 
 class ArticleListView(LoginRequiredMixin, ListView):
     model = Article
@@ -75,3 +76,20 @@ class ArticleCommentView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.article_id = self.kwargs['pk']
         return super().form_valid(form)
+    
+#API VIEWS
+class ArticleListViewApi(generics.ListCreateAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+
+class ArticleDetailViewApi(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+
+class CommentListViewApi(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+class CommentDetailViewApi(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer

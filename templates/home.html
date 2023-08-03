@@ -3,145 +3,73 @@
 {% block content %}
 
 <div class="grid">
-    <header>
-      <nav style="display: flex;">
-        <div class="logo">
-            <h4>Mansur Musaev</h4>
-        </div>
-        <ul class="nav-links">
-      
-            <li><a href="{% url 'home' %}">Главная</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            {% if user.is_authenticated %}
-              <li><a style='color:teal;' href="#">{{ user.username }}</a></li>
-              <li><a href="{% url 'logout' %}">Выход</a></li>
-            {% else %}
-              <li><a href="{% url 'login' %}">Вход</a></li>
-              <li><a href="{% url 'signup' %}">Регистрация</a></li>
-            {% endif %}
-            <li><a href="https://github.com/Mansur-09595?tab=repositories">Projects</a></li>
-            {% if user.is_superuser %}
-              <li><a href="https://accounts.google.com/DisplayUnlockCaptcha">Google</a></li>
-            {% endif %}
     
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-      </nav>
-    </header>
     <article>
-      <div style="background-color:#ffffff;" class="jumbotron">
-        <h1 class="display-4">Создать блог</h1>
-        <p class="lead">Делитесь своими идеями со всем миром,
-          привлекайте посетителей и увеличивайте посещаемость.</p>
-        <p class="lead">
-          <a class="btn btn-primary btn-lg" href="{% url 'article_list' %}" role="button">Все Посты</a>
-        </p>
-      </div>
-      {% for post in object_list %}<br>
-        <a href="#">{{post.title}}</a><br>
-        <p>{{post.body}}</p><br> 
-      {% endfor %}
+      
+      <div class="grid">
+        <header>
+          <nav style="display: flex;">
+            <div class="logo">
+                <h4>Mansur Musaev</h4>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                {% if user.is_authenticated %}
+                  <li><a style='color:teal;' href="#">{{ user.username }}</a></li>
+                  <li><a href="{% url 'logout' %}">Выход</a></li>
+                {% else %}
+                  <li><a href="{% url 'login' %}">Вход</a></li>
+                  <li><a href="{% url 'signup' %}">Регистрация</a></li>
+                {% endif %}
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+          </nav>    
+        </header>
+        <article style="color: black;">
+          {% for article in object_list %}
+          <div style="position: initial;" class="card">
+            <div class="card-header">
+              <span class="font-weight-bold">{{ article.title }}</span> &middot;
+              <span class="text-muted">by {{ article.author }} | {{ article.date }}</span>
+            </div>
+            <div class="card-body">
+              <p>{{ article.body }}</p>
+              {% if article.author == user %}
+                <a href="{% url 'article_edit' article.pk %}">Edit</a> |
+                <a href="{% url 'article_delete' article.pk %}">Delete</a>
+              {% endif %}
+            </div>
+            <div class="card-footer">
+              <h2>Comments</h2>
+              <a href="{% url 'add_comments' article.pk %}">Add Comment</a>
+              <br/><br/>
+              {% for comment in article.comments.all %}
+                <p>
+                  <span class="font-weight-bold">{{ comment.author }} &middot; {{ comment.date }} &middot;</span>
+                  {{ comment.comment }}
+                  <br>
+                  {{ comment.body }}
+                </p>
+              {% endfor %}
+            </div>
+          </div>
+          <br />
+        {% endfor %}
+        </article>
+    
+    </div>
+
       {% if user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a href="{% url 'article_new' %}">+ Создать пост</a></li>
+          <li class="nav-item"><a href="{% url 'home' %}">Все посты</a></li>
         </ul>
       {% endif %}
     </article>
-    <aside>
-        <div class="info_name">
-          <div id="carouselExampleIndicators" class="carousel slide my-5" data-ride="carousel">
-            <ol class="carousel-indicators" style="margin-bottom: -50px;">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="3" class=""></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-              <div class="carousel-item active">
-                <img class="d-block img-fluid" src="static/images/html.png" alt="First slide" >
-                <img class="d-block img-fluid" src="static/images/css.png" alt="First slide">
-                <p>Front-end сайта написана с нуля, традиционно HTML & CSS, а также адаптация на телефоны CSS Grid & CSS Flex</p>
-              </div>
-              <div class="carousel-item">
-                <img class="d-block img-fluid" src="static/images/js.png" alt="Second slide">
-                <p>Сайт использует модули JavaScript для выведения кнопок</p>
-              </div>
-              <div class="carousel-item">
-                <img class="d-block img-fluid" src="static/images/python.png" alt="Third slide">
-                <p>ООП, Миксины, Классы, Функции и Статические файлы, все это благодаря Python</p>
-              </div>
-              <div class="carousel-item">
-                <img class="d-block img-fluid" src="static/images/django.png" alt="Third slide">
-                <p>Ну и конечно не только Python, Django всему голова ему!</p>
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
-        </div>
-    </aside>
-    <footer style="width: 100%;" class="bg-dark text-center text-white">
-      <!-- Grid container -->
-      <div class="container p-4 pb-0">
-        <!-- Section: Social media -->
-        <section class="mb-4">
-          <!-- Facebook -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-    
-          <!-- Twitter -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-twitter"></i
-          ></a>
-    
-          <!-- Google -->
-          <a class="btn btn-outline-light btn-floating m-1" href="https://www.google.ru/" role="button"
-            ><i class="fab fa-google"></i
-          ></a>
-    
-          <!-- Instagram -->
-          <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/musaev.2.0/" role="button"
-            ><i class="fab fa-instagram"></i
-          ></a>
-    
-          <!-- Linkedin -->
-          <a class="btn btn-outline-light btn-floating m-1" href="https://hh.ru/resume/900dc250ff03504e380039ed1f56327659494c" role="button"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
-    
-          <!-- Github -->
-          <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/Mansur-09595/" role="button"
-            ><i class="fab fa-github"></i
-          ></a>
-        </section>
-        <!-- Section: Social media -->
-      </div>
-      <!-- Grid container -->
-    
-      <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © Мансур Мусаев:
-        <a class="text-white" href="https://hh.ru/resume/900dc250ff03504e380039ed1f56327659494c">1997 года рождения</a>
-      </div>
-      <!-- Copyright -->
-    </footer>
+   
 </div>
-<style>
-  @media screen and (max-width: 600px) {
-  aside {
-    display: none;
-  }
-}
-</style>
 {% endblock %}

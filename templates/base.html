@@ -22,16 +22,32 @@
     <title>Document</title>
 </head>
 <body style="background-color: #d0cbcb;">
+    <header>
+        <nav style="display: flex;">
+          <div class="logo">
+              <h4>Mansur Musaev</h4>
+          </div>
+          <ul class="nav-links">
+        
+              <li><a href="{% url 'home' %}">Главная</a></li>
+              {% if user.is_authenticated %}
+                <li><a style='color:teal;' href="#">{{ user.username }}</a></li>
+                <li><a href="{% url 'logout' %}">Выход</a></li>
+              {% else %}
+                <li><a href="{% url 'login' %}">Вход</a></li>
+                <li><a href="{% url 'signup' %}">Регистрация</a></li>
+              {% endif %}
+
+          </ul>
+          <div class="burger">
+              <div class="line1"></div>
+              <div class="line2"></div>
+              <div class="line3"></div>
+          </div>
+        </nav>
+      </header>
     {% block content %}
-    <div class="grid">
-        <header>Шапка</header>
-        <article>
-            <h1>Заголовок</h1>
-            <p>Далеко-далеко за словесными горами в стране гласных, и согласных живут рыбные тексты.</p>
-        </article>
-        <aside>Сайдбар</aside>
-        <footer><a href="#">About</a></footer>
-    </div>
+
     {% endblock content %}
           <!-- Bootstrap core JavaScript -->
           <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

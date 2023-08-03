@@ -9,7 +9,7 @@ from .models import Article, Comment
 
 class ArticleListView(LoginRequiredMixin, ListView):
     model = Article
-    template_name = 'article_list.html'
+    template_name = 'home.html'
     login_url = 'login'
 
 
@@ -39,7 +39,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Article
     template_name = 'article_delete.html'
-    success_url = reverse_lazy('article_list')
+    success_url = reverse_lazy('home')
     login_url = 'login'
 
     def test_func(self):

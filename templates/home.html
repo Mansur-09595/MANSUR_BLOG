@@ -2,54 +2,33 @@
 
 {% block content %}
 
-<div class="grid">
+<div class="ui container center aligned">
     
-    <article>
+    <article class="ui segment" style="width: 100%; margin: auto;">
       
-      <div class="grid">
-        <header>
-          <nav style="display: flex;">
-            <div class="logo">
-                <h4>Mansur Musaev</h4>
-            </div>
-            <ul class="nav-links">
-                <li><a href="{% url 'home' %}">Главная</a></li>
-                {% if user.is_authenticated %}
-                  <li><a style='color:teal;' href="#">{{ user.username }}</a></li>
-                  <li><a href="{% url 'logout' %}">Выход</a></li>
-                {% else %}
-                  <li><a href="{% url 'login' %}">Вход</a></li>
-                  <li><a href="{% url 'signup' %}">Регистрация</a></li>
-                {% endif %}
-            </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
-          </nav>    
-        </header>
-        <article style="color: black;">
+      <div class="ui grid">
+
+        <article style="color: black;" class="ui container">
           {% for article in object_list %}
-          <div style="position: initial;" class="card">
-            <div class="card-header">
-              <span class="font-weight-bold">{{ article.title }}</span> &middot;
-              <span class="text-muted">by {{ article.author }} | {{ article.date }}</span>
+          <div style="position: initial; width: 700px; margin: auto;" class="ui card">
+            <div class="content">
+              <span class="header">{{ article.title }}</span> &middot;
+              <span class="meta">by {{ article.author }} | {{ article.date }}</span>
             </div>
-            <div class="card-body">
+            <div class="content">
               <p>{{ article.body }}</p>
               {% if article.author == user %}
                 <a href="{% url 'article_edit' article.pk %}">Edit</a> |
                 <a href="{% url 'article_delete' article.pk %}">Delete</a>
               {% endif %}
             </div>
-            <div class="card-footer">
+            <div class="content">
               <h2>Comments</h2>
               <a href="{% url 'add_comments' article.pk %}">Add Comment</a>
               <br/><br/>
               {% for comment in article.comments.all %}
                 <p>
-                  <span class="font-weight-bold">{{ comment.author }} &middot; {{ comment.date }} &middot;</span>
+                  <span class="header">{{ comment.author }} &middot; {{ comment.date }} &middot;</span>
                   {{ comment.comment }}
                   <br>
                   {{ comment.body }}
@@ -58,14 +37,14 @@
             </div>
           </div>
           <br />
-        {% endfor %}
+          {% endfor %}
         </article>
     
     </div>
 
       {% if user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a href="{% url 'article_new' %}">+ Создать пост</a></li>
+          <li class="nav-item"><a class="ui button primary" href="{% url 'article_new' %}">+ Создать пост</a></li>
         </ul>
       {% endif %}
     </article>

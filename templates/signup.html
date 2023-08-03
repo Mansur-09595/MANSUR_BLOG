@@ -3,38 +3,13 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="grid">
-    <header>
-      <nav style="display: flex;">
-        <div class="logo">
-            <h4>Mansur Musaev</h4>
-        </div>
-        <ul class="nav-links">
-      
-            <li><a href="{% url 'home' %}">Главная</a></li>
-            <li><a href="#">About</a></li>
-            {% if user.is_authenticated %}
-              <li><a style='color:teal;' href="#">{{ user.username }}</a></li>
-              <li><a href="{% url 'logout' %}">Выход</a></li>
-            {% else %}
-              <li><a href="{% url 'login' %}">Вход</a></li>
-              <li><a href="{% url 'signup' %}">Регистрация</a></li>
-            {% endif %}
-            <li><a href="#">Projects</a></li>
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-      </nav>    
-    </header>
-    <article style="color: black;">
+<div class="ui container center aligned">
+    <article style="color: black; width: 700px; margin: auto;">
         <h2>Регистрация пользователя</h2>
-        <form method="post">
+        <form method="post" class="ui form">
             {% csrf_token %}
             {{ form|crispy }}
-            <button class="btn btn-success" type="submit">Sign Up</button>
+            <button class="ui button primary" type="submit">Sign Up</button>
         </form>
         <br>
         <p><a href="{% url 'password_reset' %}">Восстановить пароль</a></p>
@@ -43,11 +18,4 @@
         <a href="{% url 'home' %}">Главная</a>
     </footer>
 </div>
-<style>
-  @media screen and (max-width: 600px) {
-    aside {
-      display: none;
-    }
-  }
-</style>
 {% endblock %}

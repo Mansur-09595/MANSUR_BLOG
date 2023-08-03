@@ -1,20 +1,18 @@
-
-
-
-
 {% extends 'base.html' %}
 
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="grid">
-    <article style="color: black;">
-      <h2>{{ object.title }}</h2>
-      <p>by {{ object.author }} | {{ object.date }}</p>
-      <p>{{ object.body }}</p>
-      <p><a href="{% url 'article_edit' article.pk %}">Edit</a> | <a href="{% url 'article_delete' article.pk %}">Delete</a></p>
-      <p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
+<div class="ui container center aligned">
+    <article style="color: black; max-width: 600px; margin: auto;">
+        <h2>{{ object.title }}</h2>
+        <p>by {{ object.author }} | {{ object.date }}</p>
+        <p>{{ object.body }}</p>
+        <p><a href="{% url 'article_edit' article.pk %}" class="ui button">Edit</a> | <a href="{% url 'article_delete' article.pk %}" class="ui button negative">Delete</a></p>
+        <p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
     </article>
-    <footer><a href="{% url 'home' %}">Главная</a></footer>
+    <footer style="text-align: center; padding: 10px; margin-bottom: 15px;">
+        <a href="{% url 'home' %}">Главная</a>
+    </footer>
 </div>      
 {% endblock %}

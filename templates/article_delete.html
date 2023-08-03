@@ -3,26 +3,17 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<style>
-    @media (min-width: 640px) {
-        .grid {
-            grid-template-columns: 2fr 4fr;
-            grid-template-areas:
-                "article article"
-                "footer footer"
-        }
-    }
-</style>
-<div class="grid">
-    <article style="color: black;">
-      <h1>Delete</h1>
-    <form action="" method="post">{% csrf_token %}
-      <p>Are you sure you want to delete "{{ article.title }}"?</p>
-      <button class="btn btn-danger ml-2" type="submit">Confirm</button>
-    </form>
+<div class="ui container center aligned">
+    <article style="color: black; max-width: 400px; margin: auto;">
+        <h1>Удалить</h1>
+        <form action="" method="post" class="ui form">
+            {% csrf_token %}
+            <p>Вы уверены, что хотите удалить "{{ article.title }}"?</p>
+            <button class="ui button negative" type="submit">Confirm</button>
+        </form>
     </article>
     <footer style="text-align: center; padding: 10px; margin-bottom: 15px;">
-      <a href="{% url 'article_list' %}">Назад</a>
+        <a href="{% url 'article_list' %}">Назад</a>
     </footer>
 </div>      
 {% endblock %}

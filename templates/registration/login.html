@@ -3,24 +3,17 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="grid">
-    <article style="color: black;">
+<div class="ui container center aligned">
+    <article style="color: black; width: 700px; margin: auto;">
         <h2>Войти</h2>
-        <form method="post">
+        <form method="post" class="ui form">
             {% csrf_token %}
             {{ form|crispy }}
-            <button class="btn btn-success ml-2" type="submit">Войти</button>
+            <button class="ui button primary" type="submit">Войти</button>
         </form>
     </article>
     <footer style="text-align: center; padding: 10px; margin-bottom: 15px;">
         <a href="{% url 'home' %}">Главная</a>
     </footer>
 </div>
-<style>
-  @media screen and (max-width: 600px) {
-    aside {
-      display: none;
-    }
-  }
-</style>
 {% endblock %}

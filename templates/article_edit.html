@@ -3,17 +3,17 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="grid">
-    <article style="color: black;">
-      <h1>Edit</h1>
-      <form action="" method="post">
-          {% csrf_token %}
-        {{ form|crispy }}
-        <button class="btn btn-info ml-2" type="submit">Update</button>
-      </form>
+<div class="ui container center aligned">
+    <article style="color: black; max-width: 400px; margin: auto;">
+        <h1>Изменить пост</h1>
+        <form action="" method="post" class="ui form">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="ui button primary" type="submit">Update</button>
+        </form>
     </article>
     <footer style="text-align: center; padding: 10px; margin-bottom: 15px;">
-      <a href="{% url 'article_list' %}">Назад</a>
+        <a href="{% url 'article_list' %}">Назад</a>
     </footer>
-</div>      
+</div>
 {% endblock %}
